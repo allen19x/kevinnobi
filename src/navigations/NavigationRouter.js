@@ -36,7 +36,7 @@ const NavigationRouter = () => {
 
         let iconTab, titleTab = title
         let focusedColor = Colors.LightGrayColor
-        let inactiveColor = '#B7B7B7'
+        let inactiveColor = Colors.GrayColor
 
         const navigate = () => {
             Actions.jump(screenKey)
@@ -46,11 +46,12 @@ const NavigationRouter = () => {
             case 'miningList':
                 iconTab = Icons.iconTabMining
                 titleTab = 'Mining List'
-                inactiveColor = '#4f5052'
+                inactiveColor = inactiveColor
                 break;
             case 'deposit':
                 iconTab = Icons.iconTabDeposit
                 titleTab = 'Deposit'
+                inactiveColor = inactiveColor
                 break;
             default:
                 break;
@@ -62,13 +63,13 @@ const NavigationRouter = () => {
                 background={Platform.Version >= 21 ?
                     TouchableNativeFeedback.Ripple(Colors.WhiteBluishColor, true) :
                     TouchableNativeFeedback.SelectableBackground()}>
-                <View style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', zIndex: 1 }}>
-                    <View style={{ height: 26, aspectRatio: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={styles.tabIconContainer}>
+                    <View style={styles.tabIcon}>
                         {titleTab == "Mining List" &&
                             <Image resizeMethod="resize" source={iconTab} style={[{ height: '100%', width: '100%', resizeMode: "contain" }, { tintColor: isFocused ? focusedColor : inactiveColor }]} />
                         }
                         {titleTab == "Deposit" &&
-                            <Image resizeMethod="resize" source={isFocused ? Icons.iconTabDepositOn : iconTab} style={{ height: '100%', width: '100%', resizeMode: "contain" }} />
+                            <Image resizeMethod="resize" source={isFocused ? Icons.iconTabDepositOn : iconTab} style={[{ height: '100%', width: '100%', resizeMode: "contain" }, !isFocused && { tintColor: inactiveColor }]} />
                         }
                     </View>
                 </View>
@@ -149,7 +150,7 @@ const NavigationRouter = () => {
                     key="tabBar"
                     tabs
                     showLabel={false}
-                    tabBarStyle={{ backgroundColor: "#94215d", borderTopWidth: 1, borderTopColor: Colors.GRAY, height: 70 }}
+                    tabBarStyle={{ borderTopWidth: 1, borderTopColor: Colors.GRAY, height: 70 }}
                     tabBarComponent={customTabBar}
                     hideNavBar
                 >
@@ -170,29 +171,20 @@ const NavigationRouter = () => {
 }
 
 const styles = StyleSheet.create({
-    headerBackContainer: {
-        height: '100%',
-        aspectRatio: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    headerLeftTitle: {
+    tabIconContainer: {
         width: '100%',
-        paddingLeft: 3,
-        color: '#94215d',
-        fontSize: 20,
-        lineHeight: 21,
-        letterSpacing: 0.25,
-        fontFamily: Fonts.CUTE_FONT,
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 1
     },
-    headerBackTitle: {
-        marginLeft: 0,
-        color: Colors.BLACK,
-        fontSize: 16,
-        lineHeight: 21,
-        letterSpacing: 0.25,
-        fontFamily: Fonts.STAR_FONT,
-    },
+    tabIcon: {
+        height: 26,
+        aspectRatio: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+
 })
 
 export default NavigationRouter

@@ -35,7 +35,7 @@ export const Colors = {
     GreenColor: '#8dc63f',
     CyanColor: '#05BE90',
     DarkColor: '#000000',
-    GrayColor: '#a7a9ab',
+    GrayColor: '#4f4f4f',
     MediumGrayColor: '#9D9FA0',
     LightGrayColor: '#EAEAEA',
     WhiteColor: '#ffffff',
