@@ -45,31 +45,33 @@ const LoginScreen = () => {
         if (!isEmail(email)) {
             setIsInvalidEmail(true)
         }
-        setIsLoading(true)
-        wait(2000).then(() => {
-            var dataAuth = new URLSearchParams();
-            dataAuth.append('email', email);
-            dataAuth.append('password', password);
-            modelAuth.login(dataAuth, res => {
-                const { status, result } = res
-                switch (status) {
-                    case 200:
-                        AsyncStorage.setItem(StorageKey.UserToken, JSON.stringify(result.token))
-                        // console.log(result.token)
-                        Actions.miningList()
-                        break;
-                    case 500:
-                        current.showToast('error', `${result.message}`)
-                        setIsInvalidPassword(true)
-                        setIsInvalidEmail(true)
-                        break;
-                    default:
-                        current.showToast('error', "Connection not available")
-                        break;
-                }
+        else {
+            setIsLoading(true)
+            wait(2000).then(() => {
+                var dataAuth = new URLSearchParams();
+                dataAuth.append('email', email);
+                dataAuth.append('password', password);
+                modelAuth.login(dataAuth, res => {
+                    const { status, result } = res
+                    switch (status) {
+                        case 200:
+                            AsyncStorage.setItem(StorageKey.UserToken, JSON.stringify(result.token))
+                            // console.log(result.token)
+                            Actions.miningList()
+                            break;
+                        case 500:
+                            current.showToast('error', `${result.message}`)
+                            setIsInvalidPassword(true)
+                            setIsInvalidEmail(true)
+                            break;
+                        default:
+                            current.showToast('error', "Connection not available")
+                            break;
+                    }
+                })
+                setIsLoading(false)
             })
-            setIsLoading(false)
-        })
+        }
     }
     const handleFocus = () => setIsFocused(true)
     const handleBlur = () => setIsFocused(false)
