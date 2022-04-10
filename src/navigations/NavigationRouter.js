@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import {
     View,
-    Text,
     Image,
     TouchableNativeFeedback,
     Platform,
@@ -11,7 +10,7 @@ import {
 } from 'react-native'
 import { Scene, Router, Stack, Actions, Tabs } from 'react-native-router-flux'
 
-import { Fonts, Icons, Colors, Metrics } from '../globals/GlobalConfig'
+import { Icons, Colors, Metrics } from '../globals/GlobalConfig'
 import GlobalStyle from '../globals/GlobalStyle'
 
 import LoginScreen from '../containers/AuthScreen/LoginScreen'
@@ -66,10 +65,16 @@ const NavigationRouter = () => {
                 <View style={styles.tabIconContainer}>
                     <View style={styles.tabIcon}>
                         {titleTab == "Mining List" &&
-                            <Image resizeMethod="resize" source={iconTab} style={[{ height: '100%', width: '100%', resizeMode: "contain" }, { tintColor: isFocused ? focusedColor : inactiveColor }]} />
+                            <Image 
+                            resizeMethod="resize" 
+                            source={iconTab} 
+                            style={[styles.iconTab, { tintColor: isFocused ? focusedColor : inactiveColor }]} />
                         }
                         {titleTab == "Deposit" &&
-                            <Image resizeMethod="resize" source={isFocused ? Icons.iconTabDepositOn : iconTab} style={[{ height: '100%', width: '100%', resizeMode: "contain" }, !isFocused && { tintColor: inactiveColor }]} />
+                            <Image 
+                            resizeMethod="resize" 
+                            source={isFocused ? Icons.iconTabDepositOn : iconTab} 
+                            style={[styles.iconTab, !isFocused && { tintColor: inactiveColor }]} />
                         }
                     </View>
                 </View>
@@ -109,19 +114,11 @@ const NavigationRouter = () => {
         const activeTabIndex = index;
 
         return (
-            <View style={{
-                ...GlobalStyle.cardShadow,
-                position: 'absolute',
-                bottom: -10,
-                flexDirection: 'row',
-                height: 80,
-                width: Metrics.SCREEN_WIDTH,
-                alignSelf: 'center',
-                justifyContent: 'space-evenly',
-                backgroundColor: Colors.BLACK,
-                paddingBottom: 10,
-                paddingHorizontal: Metrics.SAFE_AREA * 2
-            }}>
+            <View style={[
+                { ...GlobalStyle.cardShadow },
+                styles.customTabBarContainer
+            ]
+            }>
                 {
                     tabList.map((element, index) => (
                         <View style={{ flex: 1 }}>
@@ -178,11 +175,28 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         zIndex: 1
     },
+    customTabBarContainer: {
+        position: 'absolute',
+        bottom: -10,
+        flexDirection: 'row',
+        height: 80,
+        width: Metrics.SCREEN_WIDTH,
+        alignSelf: 'center',
+        justifyContent: 'space-evenly',
+        backgroundColor: Colors.BLACK,
+        paddingBottom: 10,
+        paddingHorizontal: Metrics.SAFE_AREA * 2
+    },
     tabIcon: {
         height: 26,
         aspectRatio: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    iconTab: {
+        height: '100%',
+        width: '100%',
+        resizeMode: "contain"
     }
 
 })

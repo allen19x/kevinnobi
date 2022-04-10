@@ -11,8 +11,8 @@ import {
 
 import { Fonts, Colors, Metrics, PropertyColors } from '../globals/GlobalConfig';
 
-const MESSAGE_FONT = Fonts.MONSERRAT_REGULER
-const MESSAGE_ACTION_FONT = Fonts.MONSERRAT_BOLD
+const MESSAGE_FONT = Fonts.CIRCULARSTD_BOOK
+const MESSAGE_ACTION_FONT = Fonts.CIRCULARSTD_BOOK_BOLD
 
 const PRIMARY_BUTTON_COLOR = Colors.PrimaryColorDark
 const PRIMARY_BUTTON_RIPPLE_COLOR = Colors.GrayColor

@@ -3,6 +3,7 @@ import { Dimensions } from "react-native"
 export const Fonts = {
     CIRCULARSTD_BOOK: 'CircularStd-Book',
     CIRCULARSTD_BOOK_ITALIC: 'CircularStd-BookItalic',
+    CIRCULARSTD_BOOK_BOLD: 'CircularStd-Bold',
 }
 
 export const Metrics = Object.freeze({

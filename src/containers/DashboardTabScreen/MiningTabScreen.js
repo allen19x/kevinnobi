@@ -137,8 +137,7 @@ const styles = StyleSheet.create({
         letterSpacing: 0.1
     },
     labelMiningText: {
-        fontFamily: Fonts.CIRCULARSTD_BOOK,
-        fontWeight: 'bold',
+        fontFamily: Fonts.CIRCULARSTD_BOOK_BOLD,
         color: Colors.LightGrayColor,
         letterSpacing: 0,
         fontSize: 22,

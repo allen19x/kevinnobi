@@ -83,7 +83,7 @@ const DepositTabScreen = () => {
                 <>
                     <Image style={styles.image} source={Images.BANNER_ADS}></Image>
                     <Text style={styles.labelChangeText}>24H Changes
-                        <Text style={{ color: Colors.CyanColor, fontWeight: 'bold' }}> + {HourChange}%</Text>
+                        <Text style={{ color: Colors.CyanColor, fontFamily:Fonts.CIRCULARSTD_BOOK_BOLD }}> + {HourChange}%</Text>
                     </Text>
                     <Text style={styles.labelAssetsText}>${totalAsset}</Text>
                     <View style={styles.buttonDepositStyle}>
@@ -135,8 +135,7 @@ const styles = StyleSheet.create({
         opacity: 1
     },
     labelAssetsText: {
-        fontFamily: Fonts.CIRCULARSTD_BOOK,
-        fontWeight: 'bold',
+        fontFamily: Fonts.CIRCULARSTD_BOOK_BOLD,
         marginBottom: 20,
         color: Colors.WhiteColor,
         letterSpacing: 0,
