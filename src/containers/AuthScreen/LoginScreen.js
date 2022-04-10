@@ -1,18 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Text, StyleSheet, FlatList, Image, RefreshControl, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, ActivityIndicator, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 import { TextInput } from 'react-native-gesture-handler';
-import { modelAuth } from '../../models/Auth'
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Colors, Fonts, Icons, Images, Metrics, StorageKey } from '../../globals/GlobalConfig';
+import { Colors, Fonts, Images, Metrics, StorageKey } from '../../globals/GlobalConfig';
 import GlobalStyle from '../../globals/GlobalStyle';
+import { getUserToken, isEmail, wait } from '../../globals/GlobalFunction';
+import { modelAuth } from '../../models/Auth'
 
 import CustomButton from '../../components/CustomButton';
 import CustomToast from '../../components/CustomToast';
-import { getUserToken, isEmail, wait } from '../../globals/GlobalFunction';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = () => {
 
@@ -64,7 +64,7 @@ const LoginScreen = () => {
                         setIsInvalidEmail(true)
                         break;
                     default:
-                        // current.showToast('error', "Connection not available")
+                        current.showToast('error', "Connection not available")
                         break;
                 }
             })
@@ -81,9 +81,12 @@ const LoginScreen = () => {
                 <Image source={Images.LOGO} />
             </View>
             {isToken ?
-                <RefreshControl
-                    refreshing={isLoading}
-                />
+                <View style={{
+                    flex: 1,
+                    justifyContent: "center"
+                }}>
+                    <ActivityIndicator color={Colors.WhiteColor} size='large' />
+                </View>
                 :
                 <>
                     <View style={{ paddingTop: 48, marginHorizontal: Metrics.SAFE_AREA + 2, marginBottom: 10, }}>

@@ -63,12 +63,12 @@ const NavigationRouter = () => {
                     TouchableNativeFeedback.Ripple(Colors.WhiteBluishColor, true) :
                     TouchableNativeFeedback.SelectableBackground()}>
                 <View style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', zIndex: 1 }}>
-                    <View style={{ height: 26,aspectRatio:1, alignItems: 'center', justifyContent: 'center' }}>
-                        {titleTab=="Mining List" &&
-                        <Image resizeMethod="resize" source={iconTab} style={[{ height: '100%', width: '100%', resizeMode: "contain" }, { tintColor: isFocused ? focusedColor : inactiveColor }]} />
+                    <View style={{ height: 26, aspectRatio: 1, alignItems: 'center', justifyContent: 'center' }}>
+                        {titleTab == "Mining List" &&
+                            <Image resizeMethod="resize" source={iconTab} style={[{ height: '100%', width: '100%', resizeMode: "contain" }, { tintColor: isFocused ? focusedColor : inactiveColor }]} />
                         }
-                        {titleTab=="Deposit" &&
-                        <Image resizeMethod="resize" source={isFocused ? Icons.iconTabDepositOn : iconTab} style={{ height: '100%', width: '100%', resizeMode: "contain" }} />
+                        {titleTab == "Deposit" &&
+                            <Image resizeMethod="resize" source={isFocused ? Icons.iconTabDepositOn : iconTab} style={{ height: '100%', width: '100%', resizeMode: "contain" }} />
                         }
                     </View>
                 </View>
@@ -116,10 +116,10 @@ const NavigationRouter = () => {
                 height: 80,
                 width: Metrics.SCREEN_WIDTH,
                 alignSelf: 'center',
-                justifyContent:'space-evenly',
+                justifyContent: 'space-evenly',
                 backgroundColor: Colors.BLACK,
                 paddingBottom: 10,
-                paddingHorizontal:Metrics.SAFE_AREA*2
+                paddingHorizontal: Metrics.SAFE_AREA * 2
             }}>
                 {
                     tabList.map((element, index) => (
@@ -140,12 +140,12 @@ const NavigationRouter = () => {
                 transitionConfig={transitionConfig}
             >
                 <Scene key='login'
+                    initial
                     hideNavBar
                     type="reset"
                     component={LoginScreen}
                 />
                 <Tabs
-                   initial
                     key="tabBar"
                     tabs
                     showLabel={false}
@@ -154,11 +154,11 @@ const NavigationRouter = () => {
                     hideNavBar
                 >
                     <Scene key='miningList'
-                    hideNavBar
-                    onEnter={() => Actions.refresh({ lastUpdate: new Date })}
-                    component={MiningTabScreen} />
+                        hideNavBar
+                        onEnter={() => Actions.refresh({ lastUpdate: new Date })}
+                        component={MiningTabScreen} />
                     <Scene key='deposit'
-                    hideNavBar
+                        hideNavBar
                         onEnter={() => Actions.refresh({ lastUpdate: new Date })}
                         component={DepositTabScreen} />
                 </Tabs>
