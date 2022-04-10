@@ -49,7 +49,8 @@ const MiningTabScreen = () => {
 
     return (
         <LinearGradient
-            colors={['#152A53', '#000000']}
+            start={{ x: 0.1, y: -0.2 }}
+            colors={[Colors.PrimaryColorDark, Colors.DarkColor]}
             style={[GlobalStyle.container, { paddingHorizontal: Metrics.SAFE_AREA, paddingBottom: 60 }]}>
             {miningDataFiltered.length == 0 ?
                 <>
@@ -64,7 +65,6 @@ const MiningTabScreen = () => {
                 <>
                     <View style={{ flexDirection: 'row' }}>
                         <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', marginRight: 16 }}>
-                            {/* <Image resizeMode='contain' source={Icons.iconBack} style={{ width: 24, height: 32 }} /> */}
                             <FontAwesome
                                 size={24}
                                 name={'angle-left'}
@@ -88,9 +88,9 @@ const MiningTabScreen = () => {
                         data={miningDataFiltered}
                         renderItem={({ item, index }) =>
                             <>
-                                <View style={{ height: 54, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <View style={styles.listItemContainer}>
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                        <Image resizeMode='contain' source={{ uri: item.image }} style={{ width: 16, height: 16, marginRight: 16 }} />
+                                        <Image resizeMode='contain' source={{ uri: item.image }} style={styles.coinImage} />
                                         <Text style={styles.labelMiningText}>{item.ticker}</Text>
                                     </View>
                                     <Text style={styles.labelMiningText}>{(parseFloat(item.amount)).toFixed(8)}</Text>
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.WHITE,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#223965',
+        backgroundColor: Colors.PrimaryColorDark,
         borderRadius: 8
     },
     searchLabel: {
@@ -134,9 +134,20 @@ const styles = StyleSheet.create({
     labelMiningText: {
         fontFamily: Fonts.CIRCULARSTD_BOOK,
         fontWeight: 'bold',
-        color: '#EAEAEA',
+        color: Colors.LightGrayColor,
         letterSpacing: 0,
         fontSize: 22,
         opacity: 1
     },
+    listItemContainer: {
+        height: 54,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    coinImage: {
+        width: 16,
+        height: 16,
+        marginRight: 16
+    }
 })

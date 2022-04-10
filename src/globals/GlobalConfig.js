@@ -30,16 +30,18 @@ export const Images = {
     BANNER_ADS: require("../assets/images/img_banner_ads.png"),
 }
 export const Colors = {
-    PrimaryColorDark: "#0F5CBF",
-    PrimaryColor: '#b7dbeb',
+    PrimaryColorDark: "#11203C",
+    PrimaryColor: '#2457b5',
     GreenColor: '#8dc63f',
+    CyanColor: '#05BE90',
     DarkColor: '#000000',
     GrayColor: '#a7a9ab',
-    LightGrayColor: '#efefef',
+    MediumGrayColor: '#9D9FA0',
+    LightGrayColor: '#EAEAEA',
     WhiteColor: '#ffffff',
     WhiteBluishColor: '#e6f8fc',
     RedColor: '#EE2020',
-    YellowColor: '#FDAD2A',
+    YellowColor: '#F6BC45',
 }
 
 export const PropertyColors = {

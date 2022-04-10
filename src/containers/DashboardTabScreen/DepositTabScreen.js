@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Text, StyleSheet, FlatList, Image, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, Image, ActivityIndicator } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
-import moment from 'moment';
 
-import { Colors, Fonts, Icons, Images, Metrics, StorageKey } from '../../globals/GlobalConfig';
+import { Colors, Fonts, Images, Metrics, StorageKey } from '../../globals/GlobalConfig';
 import GlobalStyle from '../../globals/GlobalStyle';
-import { getUserData, getUserToken, wait } from '../../globals/GlobalFunction';
+import { getUserToken, wait } from '../../globals/GlobalFunction';
 import { modelTransaction } from '../../models/Transaction';
 
 import CustomButton from '../../components/CustomButton';
@@ -70,7 +69,8 @@ const DepositTabScreen = () => {
 
     return (
         <LinearGradient
-            colors={['#152A53', '#000000']}
+            start={{ x: 0.1, y: -0.2 }}
+            colors={[Colors.PrimaryColorDark, Colors.DarkColor]}
             style={[GlobalStyle.container, { alignItems: 'center', paddingHorizontal: Metrics.SAFE_AREA, paddingBottom: 60 }]}>
             {isLoading ?
                 <View style={{
@@ -83,12 +83,12 @@ const DepositTabScreen = () => {
                 <>
                     <Image style={styles.image} source={Images.BANNER_ADS}></Image>
                     <Text style={styles.labelChangeText}>24H Changes
-                        <Text style={{ color: '#05BE90', fontWeight: 'bold' }}> + {HourChange}%</Text>
+                        <Text style={{ color: Colors.CyanColor, fontWeight: 'bold' }}> + {HourChange}%</Text>
                     </Text>
                     <Text style={styles.labelAssetsText}>${totalAsset}</Text>
                     <View style={styles.buttonDepositStyle}>
                         <CustomButton
-                            customColor={"#05BE90"}
+                            customColor={Colors.CyanColor}
                             onPress={() => onClickDeposit()}
                             isLoading={isLoadingDeposit}
                             label='Deposit'
@@ -96,7 +96,7 @@ const DepositTabScreen = () => {
                     </View>
                     <View style={styles.buttonLogoutStyle}>
                         <CustomButton
-                            customColor={"#223965"}
+                            customColor={Colors.PrimaryColor}
                             onPress={() => onClickLogout()}
                             isLoading={isLoading}
                             label='Logout'
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     labelChangeText: {
         fontFamily: Fonts.CIRCULARSTD_BOOK,
         marginVertical: 20,
-        color: '#9D9FA0',
+        color: Colors.MediumGrayColor,
         letterSpacing: 0,
         fontSize: 19,
         opacity: 1

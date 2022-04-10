@@ -75,9 +75,10 @@ const LoginScreen = () => {
     const handleBlur = () => setIsFocused(false)
     return (
         <LinearGradient
-            colors={['#152A53', '#000000']}
+            start={{ x: 0.1, y: -0.2 }}
+            colors={[Colors.PrimaryColorDark, Colors.DarkColor]}
             style={GlobalStyle.container}>
-            <View style={{ marginHorizontal: Metrics.SAFE_AREA + 2, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={styles.nobiLogo}>
                 <Image source={Images.LOGO} />
             </View>
             {isToken ?
@@ -89,7 +90,7 @@ const LoginScreen = () => {
                 </View>
                 :
                 <>
-                    <View style={{ paddingTop: 48, marginHorizontal: Metrics.SAFE_AREA + 2, marginBottom: 10, }}>
+                    <View style={styles.labelEmail}>
                         <Text style={styles.labelText}>
                             E-mail Address
                         </Text>
@@ -112,7 +113,7 @@ const LoginScreen = () => {
                             }
                         </Text>
                     </View>
-                    <View style={{ paddingTop: 12, marginHorizontal: Metrics.SAFE_AREA + 2, marginBottom: 10, }}>
+                    <View style={styles.labelPassword}>
                         <Text style={styles.labelText}>
                             Password
                         </Text>
@@ -129,7 +130,7 @@ const LoginScreen = () => {
                             />
                             <TouchableOpacity
                                 onPress={() => setIsShowPassword(!isShowPassword)}
-                                style={{ width: 45, height: '100%', justifyContent: 'center', alignItems: 'center', zIndex: 3, position: 'absolute', right: 0, bottom: 2 }}>
+                                style={styles.iconShowPassword}>
                                 <FontAwesome
                                     size={20}
                                     name={isShowPassword ? 'eye' : 'eye-slash'}
@@ -147,7 +148,7 @@ const LoginScreen = () => {
                     </View>
                     <View style={styles.buttonStyle}>
                         <CustomButton
-                            customColor={"#2457b5"}
+                            customColor={Colors.PrimaryColor}
                             onPress={() => onLoginClick()}
                             isLoading={isLoading}
                             label='Login'
@@ -166,9 +167,9 @@ const styles = StyleSheet.create({
     inputBoxStyle: {
         flex: 1,
         fontSize: 19,
-        color: '#EAEAEA',
+        color: Colors.LightGrayColor,
         paddingHorizontal: 14,
-        backgroundColor: '#11203C',
+        backgroundColor: Colors.PrimaryColorDark,
         textAlign: 'center',
         borderRadius: 8
     },
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
     labelText: {
         fontFamily: Fonts.CIRCULARSTD_BOOK,
         marginBottom: 12,
-        color: '#9D9FA0',
+        color: Colors.MediumGrayColor,
         letterSpacing: 0,
         fontSize: 19,
         opacity: 1
@@ -191,9 +192,34 @@ const styles = StyleSheet.create({
     warningText: {
         fontFamily: Fonts.CIRCULARSTD_BOOK_ITALIC,
         marginTop: 8,
-        color: '#F6BC45',
+        color: Colors.YellowColor,
         letterSpacing: 0,
         fontSize: 16,
         opacity: 1
+    },
+    nobiLogo: {
+        marginHorizontal: Metrics.SAFE_AREA + 2,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    labelEmail: {
+        paddingTop: 48,
+        marginHorizontal: Metrics.SAFE_AREA + 2,
+        marginBottom: 10
+    },
+    labelPassword: {
+        paddingTop: 12,
+        marginHorizontal: Metrics.SAFE_AREA + 2,
+        marginBottom: 10
+    },
+    iconShowPassword: {
+        width: 45,
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 3,
+        position: 'absolute',
+        right: 0,
+        bottom: 2
     }
 })
