@@ -14,6 +14,7 @@ const MiningTabScreen = () => {
     const [miningData, setMiningData] = useState([])
     const [miningDataFiltered, setMiningDataFiltered] = useState([])
     const [searchValue, setSearchValue] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
     const searchRef = useRef(null);
     const toastRef = useRef(null);
 
@@ -22,18 +23,22 @@ const MiningTabScreen = () => {
     }, [])
 
     const initialLoad = () => {
+        setIsLoading(true)
         modelTransaction.miningList('', res => {
             const { status, result } = res
             switch (status) {
                 case 200:
                     setMiningData(result.data)
                     setMiningDataFiltered(result.data)
+                    setIsLoading(false)
                     break;
                 case 500:
                     current.showToast('error', `${result.message}`)
+                    setIsLoading(false)
                     break;
                 default:
                     current.showToast('error', "Connection not available")
+                    setIsLoading(false)
                     break;
             }
         })
@@ -52,7 +57,7 @@ const MiningTabScreen = () => {
             start={{ x: 0.1, y: -0.2 }}
             colors={[Colors.PrimaryColorDark, Colors.DarkColor]}
             style={[GlobalStyle.container, { paddingHorizontal: Metrics.SAFE_AREA, paddingBottom: 60 }]}>
-            {miningDataFiltered.length == 0 ?
+            {isLoading ?
                 <>
                     <View style={{
                         flex: 1,
